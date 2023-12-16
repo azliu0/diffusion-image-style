@@ -1,0 +1,169 @@
+\scalebox{0.5}{%
+\begin{tikzpicture}
+\tikzstyle{connection}=[ultra thick,every node/.style={sloped,allow upside down},draw=\edgecolor,opacity=0.7]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Draw Layer Blocks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% input
+\pic[shift={(0,0,0)}] at (0,0,0) {
+    Box={
+            name=input,
+            caption=Input,
+            xlabel= 3,
+            ylabel=224,
+            zlabel= \qquad 224,
+            fill=\ConvColor,
+            height=40,
+            width=0.1,
+            depth=40
+        }
+};
+% conv1_1,conv1_2
+\pic[shift={(0,0,0)}] at (2.5,0,0) {
+RightBandedBox={
+name=cr1,
+caption=conv1,
+xlabel={{"64","64"}},
+zlabel=224,
+fill=\ConvColor,
+bandfill=\ConvReluColor,
+height=40,
+width={2,2},
+depth=40
+}
+};
+%pool1
+\pic[shift={(0,0,0)}] at (cr1-east) {
+Box={
+name=p1,
+fill=\PoolColor,
+opacity=0.5,
+height=35,
+width=1,
+depth=35
+}
+};
+%%%%%%%%%%
+% conv2_1,conv2_2
+\pic[shift={(2,0,0)}] at (p1-east) {
+RightBandedBox={
+name=cr2,
+caption=conv2,
+xlabel={{"128","128"}},
+zlabel=112,
+fill=\ConvColor,
+bandfill=\ConvReluColor,
+height=35,
+width={3,3},
+depth=35}
+};
+%pool2
+\pic[shift={(0,0,0)}] at (cr2-east) {
+Box={
+name=p2,
+fill=\PoolColor,
+opacity=0.5,
+height=30,
+width=1,
+depth=30}
+};
+%%%%%%%%%%
+% conv3_1,conv3_2,conv3_3,conv3_4
+\pic[shift={(2,0,0)}] at (p2-east) {
+RightBandedBox={
+name=cr3,
+caption=conv3,
+xlabel={{"256","256","256","256"}},
+zlabel=56,
+fill=\ConvColor,
+bandfill=\ConvReluColor,
+height=30,
+width={4,4,4,4},
+depth=30}
+};
+%pool3
+\pic[shift={(0,0,0)}] at (cr3-east) {
+Box={
+name=p3,
+fill=\PoolColor,
+opacity=0.5,
+height=23,
+width=1,
+depth=23}
+};
+%%%%%%%%%%
+% conv4_1,conv4_2,conv4_3,conv4_4
+\pic[shift={(1.8,0,0)}] at (p3-east) {
+RightBandedBox={
+name=cr4,
+caption=conv4,
+xlabel={{"512","512","512","512"}},
+zlabel=28,
+fill=\ConvColor,
+bandfill=\ConvReluColor,
+height=23,
+width={7,7,7,7},
+depth=23}
+};
+%pool4
+\pic[shift={(0,0,0)}] at (cr4-east) {
+Box={
+name=p4,
+fill=\PoolColor,
+opacity=0.5,
+height=15,
+width=1,
+depth=15}
+};
+%%%%%%%%%%
+% conv5_1,conv5_2,conv5_3,conv5_4
+\pic[shift={(1.5,0,0)}] at (p4-east) {
+RightBandedBox={
+name=cr5,
+caption=conv5,
+xlabel={{"512","512","512","512"}},
+zlabel=14,
+fill=\ConvColor,
+bandfill=\ConvReluColor,
+height=15,
+width={7,7,7,7},
+depth=15}
+};
+%pool5
+\pic[shift={(0,0,0)}] at (cr5-east) {
+Box={
+name=p5,
+fill=\PoolColor,
+opacity=0.5,
+height=10,
+width=1,
+depth=10}
+};
+%%%%%%%%%     
+% fullconnection
+\pic[shift={(2.5,0,0)}] at (p5-east) {
+    RightBandedBox={
+            name=cr6,
+            caption=\makebox[0pt]{\shortstack[c]{fc}},
+            xlabel={{"",""}},
+            zlabel=25088,
+            fill=\FcColor,
+            bandfill=\SoftmaxColor,
+            height=2,
+            width=2,
+            depth=70
+        }
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Draw connections
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draw [connection]  (0,0,0)    -- node {\midarrow} (cr1-west);
+\draw [connection]  (p1-east)    -- node {\midarrow} (cr2-west);
+\draw [connection]  (p2-east)    -- node {\midarrow} (cr3-west);
+\draw [connection]  (p3-east)    -- node {\midarrow} (cr4-west);
+\draw [connection]  (p4-east)    -- node {\midarrow} (cr5-west);
+\draw [connection]  (p5-east)    -- node {\midarrow} (cr6-west);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}
+}

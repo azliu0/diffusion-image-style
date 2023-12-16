@@ -1,0 +1,49 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{simple}[2023/11/26]
+
+% formatting packages
+% \RequirePackage{kpfonts} % disable to use default font
+\RequirePackage[dvipsnames]{xcolor} % makes things rainbow
+\RequirePackage{tcolorbox} % rainbow boxes
+\RequirePackage{titlesec} % section customization
+\RequirePackage{multirow} % tables
+\RequirePackage{float} % figure formatting
+\RequirePackage{graphicx} % \includegraphics
+\RequirePackage[stable]{footmisc} % footnotes
+\RequirePackage[margin = 0.75in]{geometry} % geometry of the page
+\RequirePackage{fancyhdr} % headers+footers
+\RequirePackage{tocloft} % toc
+\RequirePackage{pgffor} % \foreach
+\RequirePackage{upgreek} % upright greek letters
+\RequirePackage{marvosym} % astronomy symbols
+\RequirePackage{fontawesome} % more symbols
+\RequirePackage{datetime} % date and time
+\RequirePackage{adjustbox} % scaling tikzcd diagrams
+\RequirePackage{lipsum} % lorem ipsum dolor
+
+% math packages
+\RequirePackage{mathtools} % 
+\RequirePackage{amssymb} % 
+\RequirePackage{amsthm} % 
+\RequirePackage{empheq} % 
+\RequirePackage{xfrac} % diagonal fractions
+\RequirePackage{asymptote} % pretty pictures
+\RequirePackage{mathdots} % dots 
+\RequirePackage{cancel} % cancelling lines 
+\RequirePackage{centernot} % center not
+\RequirePackage{bbm} % indicator variables
+\RequirePackage{hyperref} % referencing 
+
+\renewcommand{\comment}[1]{\textbf{\textcolor{Red}{#1}}}
+
+\usepackage{parskip} 
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{stmaryrd}
+\usepackage{subcaption}
+
+\newcommand{\EE}{\mathbb{E}} % ev
+\newcommand{\PP}{\mathbb{P}} % probability 
